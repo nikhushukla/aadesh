@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Matrix Electro | Electronics Store</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #07111f;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5, 14, 27, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 195, 255, 0.15);
+    }
+
+    nav {
+      max-width: 1200px;
+      height: 75px;
+      margin: auto;
+      padding: 0 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      color: #00c8ff;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: #fff;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #dcecff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00c8ff;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #00c8ff;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(7, 17, 31, 0.95),
+          rgba(7, 17, 31, 0.65)
+        ),
+        url("https://images.unsplash.com/photo-1468495244123-6c6c332eeece?auto=format&fit=crop&w=1800&q=85");
+
+      background-size: cover;
+      background-position: center;
+
+      padding: 80px 20px;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid #00c8ff;
+      border-radius: 30px;
+      color: #00c8ff;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 7vw, 82px);
+      line-height: 1.05;
+      max-width: 850px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: #00c8ff;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #c0d0e0;
+      font-size: 19px;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .primary {
+      background: #00c8ff;
+      color: #04101c;
+    }
+
+    .primary:hover {
+      background: #fff;
+      transform: translateY(-3px);
+    }
+
+    .secondary {
+      border: 1px solid #526b84;
+      color: #fff;
+    }
+
+    .secondary:hover {
+      border-color: #00c8ff;
+      color: #00c8ff;
+    }
+
+    /* =========================
+       GENERAL
+    ========================= */
+
+    section {
+      padding: 90px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title small {
+      color: #00c8ff;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+      margin-top: 8px;
+    }
+
+    .section-title p {
+      color: #8fa4ba;
+      max-width: 650px;
+      margin: 12px auto;
+    }
+
+    /* =========================
+       CATEGORIES
+    ========================= */
+
+    .categories {
+      background: #091625;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .category {
+      background: #0d1d30;
+      border: 1px solid #19324c;
+      border-radius: 15px;
+      overflow: hidden;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .category:hover {
+      transform: translateY(-8px);
+      border-color: #00c8ff;
+      box-shadow: 0 15px 35px rgba(0, 200, 255, 0.12);
+    }
+
+    .category-image {
+      height: 190px;
+      overflow: hidden;
+    }
+
+    .category-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .category:hover img {
+      transform: scale(1.08);
+    }
+
+    .category-content {
+      padding: 25px 20px;
+    }
+
+    .category h3 {
+      margin-bottom: 8px;
+    }
+
+    .category p {
+      color: #8196ac;
+      font-size: 14px;
+    }
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .products {
+      background: #07111f;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      background: #0c1b2d;
+      border: 1px solid #1b334b;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-7px);
+      border-color: #00c8ff;
+      box-shadow: 0 15px 40px rgba(0, 200, 255, 0.1);
+    }
+
+    .product-image {
+      height: 260px;
+      overflow: hidden;
+      background: #102944;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s;
+    }
+
+    .product:hover .product-image img {
+      transform: scale(1.08);
+    }
+
+    .product-info {
+      padding: 22px;
+    }
+
+    .product-info h3 {
+      margin-bottom: 8px;
+      font-size: 21px;
+    }
+
+    .product-info p {
+      color: #8ca1b6;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .price {
+      color: #00c8ff;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .buy-btn {
+      background: transparent;
+      border: 1px solid #00c8ff;
+      color: #00c8ff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .buy-btn:hover {
+      background: #00c8ff;
+      color: #07111f;
+    }
+
+    /* =========================
+       WHY US
+    ========================= */
+
+    .why {
+      background: #091625;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .why-card {
+      padding: 30px;
+      background: #0d1d30;
+      border-radius: 15px;
+      border: 1px solid #19324c;
+      transition: 0.3s;
+    }
+
+    .why-card:hover {
+      transform: translateY(-5px);
+      border-color: #00c8ff;
+    }
+
+    .why-icon {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .why-card h3 {
+      margin: 10px 0 8px;
+    }
+
+    .why-card p {
+      color: #8ca1b6;
+    }
+
+    /* =========================
+       LOCATION
+    ========================= */
+
+    .location {
+      background: #07111f;
+    }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 30px;
+      align-items: stretch;
+    }
+
+    .address-card {
+      background: #0d1d30;
+      border: 1px solid #19324c;
+      border-radius: 15px;
+      padding: 35px;
+    }
+
+    .address-card h3 {
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .address-line {
+      color: #a9bad0;
+      margin-bottom: 20px;
+    }
+
+    .address-line strong {
+      color: #fff;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .map {
+      min-height: 400px;
+      border-radius: 15px;
+      overflow: hidden;
+      border: 1px solid #19324c;
+    }
+
+    .map iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 400px;
+      border: 0;
+    }
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+      background: #091625;
+    }
+
+    .contact-box {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+      padding: 60px 25px;
+
+      background:
+        linear-gradient(
+          rgba(13, 29, 48, 0.9),
+          rgba(10, 25, 41, 0.95)
+        ),
+        url("https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1400&q=80");
+
+      background-size: cover;
+      background-position: center;
+
+      border: 1px solid #19324c;
+      border-radius: 20px;
+    }
+
+    .contact-box h2 {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    .contact-box p {
+      color: #b5c5d6;
+      margin-bottom: 25px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #040b13;
+      padding: 35px 20px;
+      text-align: center;
+      color: #71859a;
+    }
+
+    footer strong {
+      color: #00c8ff;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .location-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+
+      nav ul {
+        display: none;
+
+        position: absolute;
+        top: 75px;
+        left: 0;
+
+        width: 100%;
+
+        background: #07111f;
+
+        flex-direction: column;
+
+        padding: 20px;
+
+        text-align: center;
+
+        border-bottom: 1px solid #19324c;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .category-grid,
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 80vh;
+      }
+
+      section {
+        padding: 65px 15px;
+      }
+
+      .section-title h2 {
+        font-size: 32px;
+      }
+
+      .hero h1 {
+        font-size: 45px;
+      }
+
+      .product-image {
+        height: 230px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+
+  <header>
+
+    <nav>
+
+      <div class="logo">
+        MATRIX <span>ELECTRO</span>
+      </div>
+
+      <div class="menu-btn" onclick="toggleMenu()">
+        ☰
+      </div>
+
+      <ul id="navMenu">
+
+        <li>
+          <a href="#home">Home</a>
+        </li>
+
+        <li>
+          <a href="#categories">Categories</a>
+        </li>
+
+        <li>
+          <a href="#products">Products</a>
+        </li>
+
+        <li>
+          <a href="#location">Location</a>
+        </li>
+
+        <li>
+          <a href="#contact">Contact</a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+  </header>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="badge">
+        ⚡ Your Trusted Electronics Store
+      </div>
+
+      <h1>
+        Powering Your World With
+        <span>Smart Technology.</span>
+      </h1>
+
+      <p>
+        Welcome to Matrix Electro — your destination for modern
+        electronics, smart gadgets and reliable technology in Jamnagar.
+      </p>
+
+      <div class="buttons">
+
+        <a href="#products" class="btn primary">
+          Explore Products
+        </a>
+
+        <a href="#location" class="btn secondary">
+          📍 Find Our Store
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CATEGORIES
+  ========================= -->
+
+  <section class="categories" id="categories">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <small>
+          What We Offer
+        </small>
+
+        <h2>
+          Explore Categories
+        </h2>
+
+        <p>
+          Discover technology for your home, work and everyday life.
+        </p>
+
+      </div>
+
+
+      <div class="category-grid">
+
+
+        <!-- Smartphone -->
+
+        <div class="category">
+
+          <div class="category-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=85"
+              alt="Smartphones"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="category-content">
+
+            <h3>
+              Smartphones
+            </h3>
+
+            <p>
+              Latest smartphones and accessories.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Laptop -->
+
+        <div class="category">
+
+          <div class="category-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85"
+              alt="Laptops"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="category-content">
+
+            <h3>
+              Laptops
+            </h3>
+
+            <p>
+              Powerful laptops for work and entertainment.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Audio -->
+
+        <div class="category">
+
+          <div class="category-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
+              alt="Audio products"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="category-content">
+
+            <h3>
+              Audio
+            </h3>
+
+            <p>
+              Headphones, speakers and audio devices.
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- TV -->
+
+        <div class="category">
+
+          <div class="category-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=900&q=85"
+              alt="Televisions"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="category-content">
+
+            <h3>
+              Televisions
+            </h3>
+
+            <p>
+              Smart TVs for an immersive experience.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       PRODUCTS
+  ========================= -->
+
+  <section class="products" id="products">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <small>
+          Featured Products
+        </small>
+
+        <h2>
+          Popular Electronics
+        </h2>
+
+        <p>
+          Some of the products you can showcase in your Matrix Electro store.
+        </p>
+
+      </div>
+
+
+      <div class="product-grid">
+
+
+        <!-- Product 1 -->
+
+        <div class="product">
+
+          <div class="product-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=900&q=85"
+              alt="Smartphone Pro"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="product-info">
+
+            <h3>
+              Smartphone Pro
+            </h3>
+
+            <p>
+              Fast performance, brilliant display and modern design.
+            </p>
+
+            <div class="product-bottom">
+
+              <div class="price">
+                ₹24,999
+              </div>
+
+              <a href="#contact" class="buy-btn">
+                Enquire
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Product 2 -->
+
+        <div class="product">
+
+          <div class="product-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=85"
+              alt="Ultra Laptop"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="product-info">
+
+            <h3>
+              Ultra Laptop
+            </h3>
+
+            <p>
+              Powerful performance for work, study and entertainment.
+            </p>
+
+            <div class="product-bottom">
+
+              <div class="price">
+                ₹54,999
+              </div>
+
+              <a href="#contact" class="buy-btn">
+                Enquire
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Product 3 -->
+
+        <div class="product">
+
+          <div class="product-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=85"
+              alt="Wireless Headphones"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="product-info">
+
+            <h3>
+              Wireless Headphones
+            </h3>
+
+            <p>
+              Premium sound with comfortable wireless listening.
+            </p>
+
+            <div class="product-bottom">
+
+              <div class="price">
+                ₹2,999
+              </div>
+
+              <a href="#contact" class="buy-btn">
+                Enquire
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Product 4 -->
+
+        <div class="product">
+
+          <div class="product-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=85"
+              alt="Smart Watch"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="product-info">
+
+            <h3>
+              Smart Watch
+            </h3>
+
+            <p>
+              Stay connected and track your daily activities.
+            </p>
+
+            <div class="product-bottom">
+
+              <div class="price">
+                ₹3,499
+              </div>
+
+              <a href="#contact" class="buy-btn">
+                Enquire
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Product 5 -->
+
+        <div class="product">
+
+          <div class="product-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=900&q=85"
+              alt="4K Smart TV"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="product-info">
+
+            <h3>
+              4K Smart TV
+            </h3>
+
+            <p>
+              Crystal-clear picture and smart entertainment.
+            </p>
+
+            <div class="product-bottom">
+
+              <div class="price">
+                ₹39,999
+              </div>
+
+              <a href="#contact" class="buy-btn">
+                Enquire
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Product 6 -->
+
+        <div class="product">
+
+          <div class="product-image">
+
+            <img
+              src="https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=900&q=85"
+              alt="Bluetooth Speaker"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="product-info">
+
+            <h3>
+              Bluetooth Speaker
+            </h3>
+
+            <p>
+              Portable speaker with powerful sound.
+            </p>
+
+            <div class="product-bottom">
+
+              <div class="price">
+                ₹1,999
+              </div>
+
+              <a href="#contact" class="buy-btn">
+                Enquire
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       WHY US
+  ========================= -->
+
+  <section class="why">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <small>
+          Why Matrix Electro
+        </small>
+
+        <h2>
+          Technology You Can Trust
+        </h2>
+
+      </div>
+
+
+      <div class="why-grid">
+
+
+        <div class="why-card">
+
+          <div class="why-icon">
+            ⚡
+          </div>
+
+          <h3>
+            Latest Technology
+          </h3>
+
+          <p>
+            Discover modern electronics and smart technology
+            for everyday life.
+          </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+          <div class="why-icon">
+            🛡️
+          </div>
+
+          <h3>
+            Reliable Products
+          </h3>
+
+          <p>
+            We focus on quality products and a better
+            shopping experience.
+          </p>
+
+        </div>
+
+
+        <div class="why-card">
+
+          <div class="why-icon">
+            🤝
+          </div>
+
+          <h3>
+            Customer First
+          </h3>
+
+          <p>
+            Our goal is to provide friendly service and help
+            you choose the right technology.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       LOCATION
+  ========================= -->
+
+  <section class="location" id="location">
+
+    <div class="container">
+
+      <div class="section-title">
+
+        <small>
+          Visit Us
+        </small>
+
+        <h2>
+          Find Matrix Electro
+        </h2>
+
+        <p>
+          Come visit our store in Jamnagar, Gujarat.
+        </p>
+
+      </div>
+
+
+      <div class="location-grid">
+
+
+        <div class="address-card">
+
+          <h3>
+            📍 Our Address
+          </h3>
+
+
+          <div class="address-line">
+
+            <strong>
+              Matrix Electro
+            </strong>
+
+            Electronics Store
+
+          </div>
+
+
+          <div class="address-line">
+
+            <strong>
+              Address
+            </strong>
+
+            Shantivan Society, Street No. 2,<br>
+
+            Hapa Road, Lalwadi,<br>
+
+            Jamnagar, Gujarat, India
+
+          </div>
+
+
+          <a
+            class="btn primary"
+            href="https://www.google.com/maps/search/?api=1&query=Shantivan+Society+Street+No.+2,+Hapa+Road,+Lalwadi,+Jamnagar,+Gujarat"
+            target="_blank"
+            rel="noopener"
+          >
+            🗺️ Open in Google Maps
+          </a>
+
+        </div>
+
+
+        <div class="map">
+
+          <iframe
+            src="https://www.google.com/maps?q=Shantivan%20Society%20Street%20No.%202%2C%20Hapa%20Road%2C%20Lalwadi%2C%20Jamnagar%2C%20Gujarat&output=embed"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONTACT
+  ========================= -->
+
+  <section class="contact" id="contact">
+
+    <div class="container">
+
+      <div class="contact-box">
+
+        <h2>
+          Ready to Upgrade?
+        </h2>
+
+        <p>
+          Visit Matrix Electro and discover the technology
+          that's right for you.
+        </p>
+
+        <a href="#location" class="btn primary">
+          📍 Visit Our Store
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <p>
+      © 2026
+      <strong>Matrix Electro</strong>.
+      All Rights Reserved.
+    </p>
+
+    <p>
+      Shantivan Society, Street No. 2,
+      Hapa Road, Lalwadi, Jamnagar, Gujarat
+    </p>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    function toggleMenu() {
+
+      document
+        .getElementById("navMenu")
+        .classList
+        .toggle("active");
+
+    }
+
+
+    // Close mobile menu after clicking a link
+
+    document
+      .querySelectorAll("#navMenu a")
+      .forEach(function(link) {
+
+        link.addEventListener("click", function() {
+
+          document
+            .getElementById("navMenu")
+            .classList
+            .remove("active");
+
+        });
+
+      });
+
+  </script>
+
+</body>
+</html>
